@@ -13,16 +13,17 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14.x'
-    - name: Change directory to steffbeckers.eu/
-      run: cd steffbeckers.eu/
     - name: Install dependencies
+      working-directory: ./steffbeckers.eu
       run: npm ci
     - name: Install Playwright
+      working-directory: ./steffbeckers.eu
       run: npx playwright install --with-deps
     - name: Run Playwright tests
+      working-directory: ./steffbeckers.eu
       run: npx playwright test
     - uses: actions/upload-artifact@v2
       if: always()
       with:
         name: playwright-test-results
-        path: test-results/
+        path: ./steffbeckers.eu/test-results/
